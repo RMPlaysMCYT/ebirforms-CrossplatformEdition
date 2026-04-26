@@ -1,0 +1,69 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:eBIR_Forms_RE.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="700"
+        x:Class="eBIR_Forms_RE.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="eBIR_Forms_RE">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/> <!-- Top Greeting -->
+            <RowDefinition Height="*"/>    <!-- Main Content -->
+            <RowDefinition Height="Auto"/> <!-- Bottom Info -->
+        </Grid.RowDefinitions>
+        <TextBlock Text="{Binding Greeting}" 
+                   HorizontalAlignment="Left" 
+                   Padding="10, 10, 0, 0" 
+                   VerticalAlignment="Top"
+                   FontSize="24"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Border Grid.Column="0" Padding="0, 10">
+                <StackPanel>
+                    <TextBlock FontWeight="Bold" FontSize="40" Margin="10, 30, 0, 0" Text="Profile"></TextBlock>
+                    <Rectangle Height="3" Fill="Black" HorizontalAlignment="Stretch" Opacity="1" Margin="10, 0, 50, 0"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBox Grid.Column="0" PlaceholderText="Enter TIN ID" Margin="10, 10, 0, 0" FontSize="24" Background="Aquamarine" HorizontalAlignment="Stretch"/>
+                        <ComboBox Grid.Column="1" PlaceholderText="SELECT A RDO Branch" Margin=""/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+            <Border Grid.Column="1" Padding="0, 10">
+                <StackPanel>
+                    <TextBlock FontWeight="Bold" FontSize="40" Margin="10, 30, 0, 0" Text="List of BIR Forms"></TextBlock>
+                    <Rectangle Height="3" Fill="Black" HorizontalAlignment="Stretch" Opacity="1" Margin="10, 0, 50, 0"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+        <Border Grid.Row="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="{Binding AppInfo}" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding GovtInfo}" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Padding="0, 0, 20, 0"></TextBlock>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
