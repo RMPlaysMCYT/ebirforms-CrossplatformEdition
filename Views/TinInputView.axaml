@@ -1,0 +1,13 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:eBIR_Forms_RE.ViewModels"
+             xmlns:viewModels="clr-namespace:eBIR_Forms_RE.viewModels"
+             x:Class="eBIR_Forms_RE.Views.TinInputView"
+             x:DataType="viewModels:TinInputViewModel">
+    <StackPanel>
+        <TextBox PlaceholderText="TIN (EX: 1234-5678-9012)"
+                 Margin="10, 20, 0,0"
+                 VerticalAlignment="Stretch"
+                 Text="{Binding TIN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+    </StackPanel>
+</UserControl>

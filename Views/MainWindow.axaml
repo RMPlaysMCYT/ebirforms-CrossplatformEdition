@@ -3,6 +3,7 @@
         xmlns:vm="using:eBIR_Forms_RE.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="using:eBIR_Forms_RE.Views"
         mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="700"
         x:Class="eBIR_Forms_RE.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
@@ -32,25 +33,62 @@
             
             <Border Grid.Column="0" Padding="0, 10">
                 <StackPanel>
-                    <TextBlock FontWeight="Bold" FontSize="40" Margin="10, 30, 0, 0" Text="Profile"></TextBlock>
+                    <TextBlock FontWeight="Bold" FontSize="40" Margin="10, 10, 0, 0" Text="Profile"></TextBlock>
                     <Rectangle Height="3" Fill="Black" HorizontalAlignment="Stretch" Opacity="1" Margin="10, 0, 50, 0"/>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="5"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
+                            <RowDefinition Height="10"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <TextBox Grid.Column="0" PlaceholderText="Enter TIN ID" Margin="10, 10, 0, 0" FontSize="24" Background="Aquamarine" HorizontalAlignment="Stretch"/>
-                        <ComboBox Grid.Column="1" PlaceholderText="SELECT A RDO Branch" Margin=""/>
+                        
+                        <TextBlock Margin="10,0,0,0" Text="Tax Identification Number:"/>
+                        <views:TinInputView DataContext="{Binding TinSection}" />
+                        <ComboBox Grid.Column="2" 
+                                  PlaceholderText="SELECT A RDO Branch" 
+                                  Margin="10, 20, 50, 0"
+                                  HorizontalAlignment="Stretch"
+                                  FontSize="18"
+                                  ItemsSource="{Binding RegionalLists}"
+                                  SelectedItem="{Binding selectedRegionalLists, Mode=TwoWay}"/>
                     </Grid>
+                    <StackPanel Spacing="20">
+                        <TextBox Margin="10, 0, 50, 0" FontSize="24" PlaceholderText="Name"></TextBox>
+                        <TextBlock Margin="10, -20">Name of Business</TextBlock>
+                        <TextBox Margin="10, -20, 50, 0" FontSize="24" PlaceholderText="Name"></TextBox>
+                        <TextBlock 
+                            Margin="10, -20" 
+                                   Text="{Binding TaxpayerName}"/>
+                        <TextBox Margin="10, 0, 50, 0" FontSize="24" PlaceholderText="Registered Address"></TextBox>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Grid.Column="0" Margin="10, 0, 50, 0" FontSize="24" PlaceholderText="Contact Number"></TextBox>
+                            <TextBox Grid.Column="1" Margin="10, 0, 50, 0" FontSize="24" PlaceholderText="Zip Code"></TextBox>
+                        </Grid>
+                        <TextBox Margin="10, 0, 50, 0" FontSize="24" PlaceholderText="Email Address"></TextBox>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <ComboBox Grid.Column="0" Margin="10, 0 -80, 0" FontSize="24" PlaceholderText="{Binding FormType}" HorizontalAlignment="Stretch" ItemsSource="{Binding Forms}" SelectedItem="{Binding SelectedForm}">
+                            </ComboBox>
+                            <Button Grid.Column="1" Margin="100, 0, 50, 0" FontSize="24" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="Fill Up"></Button>
+                        </Grid>
+                    </StackPanel>
                 </StackPanel>
             </Border>
             <Border Grid.Column="1" Padding="0, 10">
                 <StackPanel>
-                    <TextBlock FontWeight="Bold" FontSize="40" Margin="10, 30, 0, 0" Text="List of BIR Forms"></TextBlock>
+                    <TextBlock FontWeight="Bold" FontSize="40" Margin="10, 10, 0, 0" Text="List of BIR Forms"></TextBlock>
                     <Rectangle Height="3" Fill="Black" HorizontalAlignment="Stretch" Opacity="1" Margin="10, 0, 50, 0"/>
                 </StackPanel>
             </Border>

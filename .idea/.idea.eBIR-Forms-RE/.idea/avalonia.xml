@@ -5,6 +5,7 @@
       <map>
         <entry key="App.axaml" value="eBIR-Forms-RE.csproj" />
         <entry key="Views/MainWindow.axaml" value="eBIR-Forms-RE.csproj" />
+        <entry key="Views/TinNumberInputController.axaml" value="eBIR-Forms-RE.csproj" />
       </map>
     </option>
   </component>
