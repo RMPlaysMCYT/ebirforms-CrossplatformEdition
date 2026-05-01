@@ -31,8 +31,8 @@ namespace eBIR_Forms_RE.viewModels
             var digits = input.Replace("-", "").Replace(" ", "");
         
             digits = new string(digits.Where(char.IsDigit).ToArray());
-            return string.Join("-", Enumerable.Range(0, digits.Length / 4 + (digits.Length % 4 == 0 ? 0 : 1))
-                .Select(i => digits.Skip(i * 4).Take(4))
+            return string.Join("-", Enumerable.Range(0, digits.Length / 3 + (digits.Length % 3 == 0 ? 0 : 1))
+                .Select(i => digits.Skip(i * 3).Take(3))
                 .Where(g => g.Any())
                 .Select(g => new string(g.ToArray())));
         }
