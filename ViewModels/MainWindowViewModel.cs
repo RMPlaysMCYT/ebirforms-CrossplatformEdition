@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using eBIR_Forms_RE.viewModels;
+using eBIR_Forms_RE.Views;
 
 namespace eBIR_Forms_RE.ViewModels;
 
@@ -42,4 +43,9 @@ public partial class MainWindowViewModel : ViewModelBase
         "Payment Forms",
         "Document Stamp Tax"
     };
+
+    public void ExitApp()
+    {
+        System.Environment.Exit(0);
+    }
 }
