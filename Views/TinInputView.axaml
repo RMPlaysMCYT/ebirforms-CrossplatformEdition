@@ -5,7 +5,7 @@
              x:Class="eBIR_Forms_RE.Views.TinInputView"
              x:DataType="viewModels:TinInputViewModel">
     <StackPanel>
-        <TextBox PlaceholderText="TIN (EX: 1234-5678-9012)"
+        <TextBox PlaceholderText="TIN (EX: 012-345-678-90123)"
                  Margin="10, 20, 0,0"
                  VerticalAlignment="Stretch"
                  Text="{Binding TIN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />

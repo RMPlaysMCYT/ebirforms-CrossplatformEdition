@@ -27,14 +27,28 @@ namespace eBIR_Forms_RE.viewModels
         private string FormatTin(string? input)
         {
             if(string.IsNullOrEmpty(input))
-                return input?? "";
-            var digits = input.Replace("-", "").Replace(" ", "");
-        
-            digits = new string(digits.Where(char.IsDigit).ToArray());
-            return string.Join("-", Enumerable.Range(0, digits.Length / 3 + (digits.Length % 3 == 0 ? 0 : 1))
-                .Select(i => digits.Skip(i * 3).Take(3))
-                .Where(g => g.Any())
-                .Select(g => new string(g.ToArray())));
+                return string.Empty;
+            string digits = new string(input.Where(char.IsDigit).ToArray());
+
+            if (digits.Length > 14)
+            {
+             digits = digits.Substring(0, 14);   
+            }
+
+            if (digits.Length <= 3)
+            {
+                return digits;
+            }
+
+            if (digits.Length <= 6)
+            {
+                return digits.Insert(3, "-");
+            }
+            if (digits.Length <= 9)
+            {
+                return digits.Insert(6, "-");
+            }
+            return digits.Insert(9, "-").Insert(6, "-").Insert(3, "-");
         }
         public event PropertyChangedEventHandler? PropertyChanged;
 
