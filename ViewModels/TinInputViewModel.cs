@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Linq;
@@ -6,53 +7,63 @@ namespace eBIR_Forms_RE.viewModels
 {
     public class TinInputViewModel : INotifyPropertyChanged
     {
-        private string? _tin;
-        public string? TIN
+        private string _part1 = string.Empty;
+        private string _part2 = string.Empty;
+        private string _part3 = string.Empty;
+        private string _part4 = string.Empty;
+
+        public string Part1
         {
-            get => _tin;
-            set
+            get => _part1;
+            set => SetTinPart(ref _part1, value, 3);
+        }
+
+        public string Part2
+        {
+            get => _part2;
+            set => SetTinPart(ref _part2, value, 3);
+        }
+
+        public string Part3
+        {
+            get => _part3;
+            set => SetTinPart(ref _part3, value, 3);
+        }
+
+        public string Part4
+        {
+            get => _part4;
+            set => SetTinPart(ref _part4, value, 5);
+        }
+
+        public string FullTIN 
+        {
+            get
             {
-                if (_tin != value)
-                {
-                    string formatted = FormatTin(value);
-                    if (_tin != formatted)
-                    {
-                        _tin = formatted;
-                        OnPropertyChanged(nameof(TIN));
-                    }
-                }
+                return $"{Part1}-{Part2}-{Part3}-{Part4}".TrimEnd('-');
             }
         }
 
-        private string FormatTin(string? input)
-        {
-            if(string.IsNullOrEmpty(input))
-                return string.Empty;
-            string digits = new string(input.Where(char.IsDigit).ToArray());
-
-            if (digits.Length > 14)
-            {
-             digits = digits.Substring(0, 14);   
-            }
-
-            if (digits.Length <= 3)
-            {
-                return digits;
-            }
-
-            if (digits.Length <= 6)
-            {
-                return digits.Insert(3, "-");
-            }
-            if (digits.Length <= 9)
-            {
-                return digits.Insert(6, "-");
-            }
-            return digits.Insert(9, "-").Insert(6, "-").Insert(3, "-");
-        }
         public event PropertyChangedEventHandler? PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] string? propertyName = null) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+        private void SetTinPart(ref string field, string? value, int maxLength, [CallerMemberName] string? propertyName = null)
+        {
+            string sanitized = new string((value ?? string.Empty).Where(char.IsDigit).ToArray());
+            
+            if (sanitized.Length > maxLength)
+            {
+                sanitized = sanitized.Substring(0, maxLength);
+            }
+            if (field != sanitized)
+            {
+                field = sanitized;
+                OnPropertyChanged(propertyName);
+                
+                OnPropertyChanged(nameof(FullTIN));
+            }
+        }
     }
 }

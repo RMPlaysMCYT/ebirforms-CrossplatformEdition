@@ -8,6 +8,7 @@
         x:Class="eBIR_Forms_RE.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
+        WindowState="Maximized"
         Title="eBIR_Forms_RE">
 
     <Design.DataContext>
